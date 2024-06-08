@@ -50,10 +50,17 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
+        <!-- H2 db dependency-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <!-- assertj dependency-->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.23.1</version>
         </dependency>
     </dependencies>
 
