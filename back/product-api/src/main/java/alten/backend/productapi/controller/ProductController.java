@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-//TODO add roles
 
 @RestController
 @RequestMapping("/products")
@@ -72,6 +72,7 @@ public class ProductController {
      * sinon le code HTTP 500 (Internal Server Error) en cas d'erreur.
      */
     @PostMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product savedProduct = productService.saveProduct(product);
@@ -92,6 +93,7 @@ public class ProductController {
      * sinon le code HTTP 404 (Not Found) si le produit n'est pas trouvé ou le code HTTP 500 (Internal Server Error) en cas d'erreur.
      */
     @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable Long id) {
         try {
             Optional<Product> existingProductOptional = productService.getProduct(id);
@@ -120,6 +122,7 @@ public class ProductController {
      * sinon le code HTTP 404 (Not Found) si le produit n'est pas trouvé ou le code HTTP 500 (Internal Server Error) en cas d'erreur.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         try {
             Optional<Boolean> deleted = productService.deleteProduct(id);
