@@ -1,44 +1,54 @@
-# Back-end
+#	Spécification technique :
 
-Développer un back-end permettant la gestion de produits définis plus bas. Vous pouvez utiliser la technologie de votre choix parmis la list suivante :
+## Nom du projet :
+> product-api
 
-- nodejs/express
-- Java/Spring Boot
-- C#/.net Core
-- Python/Flask
+## Description :
 
-Le back-end doit gérer les API REST suivantes : 
+> Ce projet est une API RESTful conçue pour gérer les produits. Elle permet d'effectuer les opérations CRUD (Create, Read, Update, Delete) sur les produits.
 
-| Resource           | POST                  | GET                            | PATCH                                    | PUT | DELETE           |
-| ------------------ | --------------------- | ------------------------------ | ---------------------------------------- | --- | ---------------- |
-| **/products**      | Create a new products | Retrieve all products          | X                                        | X   |     X            |
-| **/products/1**    | X                     | Retrieve details for product 1 | Update details of product 1 if it exists | X   | Remove product 1 |
+**Technologies utilisées :**
 
-Un produit a les caractéristiques suivantes : 
+-   Java 17
+-   Spring Boot 3.3.0
+-   Spring Data JPA
+-   Spring Data REST
+-   Spring Security
+-   SpringDoc OpenAPI
+-   Lombok
+-   H2 Database
+-   JUnit 5
+-   AssertJ
+-   Mockito
 
-``` typescript
-class Product {
-  id: number;
-  code: string;
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  inventoryStatus: string;
-  category: string;
-  image?: string;
-  rating?: number;
-}
+**Fonctionnalités :**
+
+-  Récupérer la liste de tous les produits = :white_check_mark:
+-   Récupérer un produit par son ID = :white_check_mark:
+-   Créer un nouveau produit = :white_check_mark:
+-   Mettre à jour un produit existant = :white_check_mark:
+-   Supprimer un produit = :white_check_mark:
+**Documentation :**
+
+La documentation Swagger est disponible à l'adresse suivante :  :white_check_mark:
+> [http://localhost:3000/swagger-ui/index.html](http://localhost:3000/swagger-ui/index.html)
+
+**Exécution :**
+
+Pour exécuter l'application, utilisez la commande suivante :
 ```
+mvn spring-boot:run
+```
+**Tests :**
+Pour exécuter les tests unitaires, utilisez la commande suivante : :white_check_mark:
+```
+mvn test
+```
+**Configuration :**
 
-Le back-end créé doit pouvoir gérer les produits dans une base de données SQL/NoSQL ou dans un fichier json.
+Pour configurer l'application, veuillez consulter le fichier  `application.properties`.
 
-Une liste de produits est disponible dans ce fichier : `front/assets/products.json`
+**Remarques :**
 
-Un front-end en Angular est disponible et permet d'utiliser l'API via cette adresse : `http://localhost:3000`
+-   Pour plus d'informations, veuillez consulter le code source du projet.
 
-vous pouvez lancer le front-end angular avec la commande 'ng serve'
-
-# Bonus
-
-Vous pouvez ajouter des tests Postman ou Swagger pour valider votre API
