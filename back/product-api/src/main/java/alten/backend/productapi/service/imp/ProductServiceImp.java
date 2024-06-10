@@ -1,8 +1,9 @@
-package alten.backend.productapi.service;
+package alten.backend.productapi.service.imp;
 
 import alten.backend.productapi.entity.Product;
 import alten.backend.productapi.exception.ProductServiceException;
 import alten.backend.productapi.repository.ProductRepository;
+import alten.backend.productapi.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImp implements ProductService{
+public class ProductServiceImp implements ProductService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImp.class);
 
@@ -133,10 +134,11 @@ public class ProductServiceImp implements ProductService{
      *
      * @param existingProduct Le produit existant à mettre à jour.
      * @param newProduct      Le nouveau produit contenant les valeurs à mettre à jour.
+     * @return
      * @throws ProductServiceException Si une erreur survient lors de la mise à jour du produit.
      */
     @Override
-    public void updateProductFields(Product existingProduct, Product newProduct) {
+    public Product updateProductFields(Product existingProduct, Product newProduct) {
         try {
             existingProduct.setCode(newProduct.getCode() != null ? newProduct.getCode() : existingProduct.getCode());
             existingProduct.setName(newProduct.getName() != null ? newProduct.getName() : existingProduct.getName());
@@ -155,6 +157,7 @@ public class ProductServiceImp implements ProductService{
             logger.error("Error while updating product fields", e);
             throw new ProductServiceException("Error while updating product fields", e);
         }
+        return existingProduct;
     }
 
 }

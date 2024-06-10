@@ -12,6 +12,6 @@ public interface ProductService {
     Product updateProduct(Product product);
     Optional<Product> getProduct(Long id);
     Optional<Boolean> deleteProduct(Long id);
-    void updateProductFields(Product existingProduct, Product newProduct);
+    Product updateProductFields(Product existingProduct, Product newProduct);
 
 }

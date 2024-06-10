@@ -18,7 +18,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/v1/products")
 public class ProductController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
@@ -100,8 +100,7 @@ public class ProductController {
 
             if (existingProductOptional.isPresent()) {
                 Product existingProduct = existingProductOptional.get();
-                productService.updateProductFields(existingProduct, product);
-                Product updatedProduct = productService.updateProduct(existingProduct);
+                Product updatedProduct = productService.updateProductFields(existingProduct, product);
 
                 return ResponseEntity.ok(updatedProduct);
             } else {

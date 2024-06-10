@@ -1,6 +1,7 @@
 package alten.backend.productapi.entity;
 
 
+import alten.backend.productapi.utils.InventoryStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,8 @@ public class Product {
     private Double price;
     private String category;
     private Long quantity;
-    private String inventoryStatus;
+
+    @Enumerated(EnumType.STRING)
+    private InventoryStatus inventoryStatus;
     private Integer rating;
 }

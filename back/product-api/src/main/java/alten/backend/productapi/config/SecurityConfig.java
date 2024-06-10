@@ -27,8 +27,8 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.POST).hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PATCH).hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                        .requestMatchers("/products/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/products/**").hasRole("USER")
+                        .requestMatchers("/api/v1/products/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/products/**").hasRole("USER")
                                 .anyRequest().authenticated())
                                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
@@ -58,6 +58,17 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web -> web.ignoring().requestMatchers("/h2/**"));
+        return (web -> web.ignoring().requestMatchers("/h2/**")
+                .requestMatchers(
+                        "/api/v2/api-docs",
+                        "api//v3/api-docs",
+                        "/api/v3/api-docs/**",
+                        "/api/swagger-resources",
+                        "/api/swagger-resources/**",
+                        "/api/configuration/ui",
+                        "/api/configuration/security",
+                        "/api/swagger-ui/**",
+                        "/api/webjars/**",
+                        "/api/swagger-ui.html"));
     }
 }

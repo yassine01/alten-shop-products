@@ -4,6 +4,7 @@ import alten.backend.productapi.controller.ProductController;
 import alten.backend.productapi.entity.Product;
 import alten.backend.productapi.exception.ProductServiceException;
 import alten.backend.productapi.service.ProductService;
+import alten.backend.productapi.utils.InventoryStatus;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -19,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -35,9 +35,9 @@ public class ProductControllerTests {
     public void testGetAllProducts_success() {
         List<Product> mockProducts = List.of(
                 new Product(1000L, "f230fh0g3", "Bamboo Watch", "Product Description",
-                        "bamboo-watch.jpg", 65.0, "Accessories", 24L, "INSTOCK", 5),
+                        "bamboo-watch.jpg", 65.0, "Accessories", 24L, InventoryStatus.INSTOCK, 5),
                 new Product(1001L, "nvklal433", "Black Watch", "Product Description",
-                        "black-watch.jpg", 7.2, "Accessories", 61L, "INSTOCK", 4));
+                        "black-watch.jpg", 7.2, "Accessories", 61L, InventoryStatus.INSTOCK, 4));
 
         Mockito.when(productService.findAllProducts()).thenReturn(mockProducts);
         ResponseEntity<List<Product>> response = productController.getAllProducts();
@@ -67,7 +67,7 @@ public class ProductControllerTests {
     @Test
     public void testGetProduct_success() {
         Product mockProduct = new Product(1000L, "f230fh0g3", "Bamboo Watch", "Product Description",
-                "bamboo-watch.jpg", 65.0, "Accessories", 24L, "INSTOCK", 5);
+                "bamboo-watch.jpg", 65.0, "Accessories", 24L, InventoryStatus.INSTOCK, 5);
         Mockito.when(productService.getProduct(1000L)).thenReturn(Optional.of(mockProduct));
 
         ResponseEntity<Product> response = productController.getProduct(1000L);
@@ -97,7 +97,7 @@ public class ProductControllerTests {
     @Test
     public void testCreateProduct_success() {
         Product mockProduct = new Product(1000L, "f230fh0g3", "Bamboo Watch", "Product Description",
-                "bamboo-watch.jpg", 65.0, "Accessories", 24L, "INSTOCK", 5);
+                "bamboo-watch.jpg", 65.0, "Accessories", 24L, InventoryStatus.INSTOCK, 5);
 
         Mockito.when(productService.saveProduct(mockProduct)).thenReturn(mockProduct);
         ResponseEntity<Product> response = productController.createProduct(mockProduct);
@@ -120,7 +120,7 @@ public class ProductControllerTests {
     @Test
     public void testUpdateProduct_success() {
         Product mockProduct = new Product(1000L, "f230fh0g3", "Bamboo Watch", "Product Description",
-                "bamboo-watch.jpg", 65.0, "Accessories", 24L, "INSTOCK", 5);
+                "bamboo-watch.jpg", 65.0, "Accessories", 24L, InventoryStatus.INSTOCK, 5);
         Mockito.when(productService.getProduct(1000L)).thenReturn(Optional.of(mockProduct));
 
         ResponseEntity<Product> response = productController.updateProduct(mockProduct, 1000L);
